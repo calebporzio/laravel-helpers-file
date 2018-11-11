@@ -19,6 +19,7 @@ class InstallCommand extends Command
 
         if ($files->exists($helpersFilePath)) {
             $this->info('Looks like you\'ve already created a helpers file');
+            return;
         }
 
         $helpersFileContents = <<<EOT
