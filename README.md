@@ -12,6 +12,6 @@ No more will I suffer.
 
 `php artisan calebporzio:helpers`
 
-This command will create a `app/helpers.php` file in your project and handle the autolaoding for you automatically.
+This command will create a `app/helpers.php` file in your project and handle the autoloading for you automatically.
 
 Hope this silly lil' package comes in handy for you.
