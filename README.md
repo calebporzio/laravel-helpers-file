@@ -8,7 +8,7 @@ No more will I suffer.
 
 ## Installation
 
-`composer require calebporzio/laravel-helpers-file --dev`
+`composer require calebporzio/laravel-helpers-file`
 
 `php artisan calebporzio:helpers`
 
