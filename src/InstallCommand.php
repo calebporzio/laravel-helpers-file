@@ -8,26 +8,31 @@ use Illuminate\Support\Facades\File;
 class InstallCommand extends Command
 {
     protected $signature = 'calebporzio:helpers';
+    protected $description = 'Add a app/helpers.php file to your project';
 
     public function handle()
     {
-        $app = $this->getApplication()->getLaravel();
+        $helpersFilePath = app_path('helpers.php');
 
-        $helpersFilePath = $app->make('path') . DIRECTORY_SEPARATOR . 'helpers.php';
-
-        $files = $app->make('files');
-
-        if ($files->exists($helpersFilePath)) {
+        if (File::exists($helpersFilePath)) {
             $this->info('Looks like you\'ve already created a helpers file');
             return;
         }
 
-        $helpersFileContents = <<<EOT
+        File::put($helpersFilePath, $this->helpersFileContents());
+        $this->info('Hooray! Your app/helpers.php file awaits you...');
+    }
+
+    protected function helpersFileContents()
+    {
+        return <<<EOT
 <?php
 
 /**
  *  Custom Laravel Helpers
  */
+
+use Illuminate\Support\Carbon;
 
 if (! function_exists('carbon')) {
     function carbon(\$parseString = null, \$tz = null)
@@ -37,9 +42,5 @@ if (! function_exists('carbon')) {
 }
 
 EOT;
-
-        $files->put($helpersFilePath, $helpersFileContents);
-
-        $this->info('Hooray! Your app/helpers.php file awaits you...');
     }
 }
